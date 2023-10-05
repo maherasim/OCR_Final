@@ -21,25 +21,32 @@ def extractTextFromImage(uploaded_file):
 def main():
     return render_template("index.html")
 
+
 @app.route("/submit", methods=['POST'])
 def get_output():
     if request.method == 'POST':
         try:
-            # Get the uploaded image file
-            uploaded_file = request.files['image']
+            uploaded_files = request.files.getlist('images[]')
 
-            if uploaded_file.filename != '':
+            if len(uploaded_files) > 0:
+                results = []
+
                 # Create a ThreadPoolExecutor for multithreading
                 with concurrent.futures.ThreadPoolExecutor() as executor:
-                    # Extract text from the uploaded image using OCR in a separate thread
-                    future = executor.submit(extractTextFromImage, uploaded_file)
-                    result = future.result()  # Get the result from the thread
+                    # Extract text from each uploaded image using OCR in separate threads
+                    futures = [executor.submit(extractTextFromImage, file) for file in uploaded_files]
 
-                return render_template("index.html", prediction=result)
+                    # Collect the results from the threads
+                    for future in concurrent.futures.as_completed(futures):
+                        results.append(future.result())
+
+                return render_template("index.html", predictions=results)
             else:
-                return render_template("index.html", prediction="No image uploaded.")
+                return render_template("index.html", predictions=["No images uploaded."])
         except Exception as e:
-            return render_template("index.html", prediction=str(e))
+            return render_template("index.html", predictions=[str(e)])
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
