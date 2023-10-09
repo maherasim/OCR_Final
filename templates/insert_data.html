@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Insert Data</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Include Bootstrap and jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+    <!-- Include Bootstrap-datepicker CSS and JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  
+    <!-- Initialize datepicker -->
+    <script>
+      $(document).ready(function(){
+        $('.datepicker').datepicker({
+          format: 'dd-mm-yyyy',  // Change the format to match your requirements
+          autoclose: true
+        });
+      });
+    </script>
+</head>
+<body>
+
+<div class="container">
+  <h1 class="jumbotron bg-primary">Insert Data into Database</h1>
+  <br><br>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class="flashes">
+      {% for category, message in messages %}
+       <h3> <li class="alert alert-{{ category }}">{{ message }}</li></h3>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %} <br><br>
+  <form class="form-horizontal" action="/insert" method="post">
+    <!-- Id Card Info -->
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="id_card_number">Id Card Number:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="id_card_number" required>
+        </div>
+    </div>
+
+    <!-- Matric Marksheet -->
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="matric_student_name">Student Name:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="matric_student_name" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="matric_father_name">Father Name:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="matric_father_name" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="matric_board_name">Metric Board Name:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="matric_board_name" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="matric_dob">Date of Birth:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control datepicker" name="matric_dob"required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="matric_obtain_marks">Obtain Marks:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="matric_obtain_marks" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="matric_total_marks">Total Marks:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="matric_total_marks"  required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+        </div>
+    </div>
+
+    <!-- Fsc Marksheet -->
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="fsc_board_name">FCS Board Name:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="fsc_board_name" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="fsc_total_marks">Total Marks:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="fsc_total_marks" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="fsc_obtain_marks">Obtain Marks:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="fsc_obtain_marks" required oninput="this.value = this.value.replace(/[^0-9]/g, '');" >
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success">Insert Data</button>
+        </div>
+    </div>
+  </form>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <a href="{{ url_for('main') }}" class="btn btn-primary">Back to Extract Text</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
