@@ -40,78 +40,35 @@
   {% endif %}
 {% endwith %} <br><br>
   <form class="form-horizontal" action="/insert" method="post">
-    <!-- Id Card Info -->
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="id_card_number">Id Card Number:</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" name="id_card_number" required>
-        </div>
-    </div>
+    <lable> ID Card Number</lable>
+    <input type="text" name="id_card_number" value="{{ data.id_card_number if data and 'id_card_number' in data else '' }}">
+    <lable>Metric Student Nme</lable>
+<input type="text" name="matric_student_name" value="{{ data.matric_student_name if data and 'matric_student_name' in data else '' }}">
+<lable>Metric Father Nme</lable>
 
-    <!-- Matric Marksheet -->
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="matric_student_name">Student Name:</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" name="matric_student_name" required>
-        </div>
-    </div>
+<input type="text" name="matric_father_name" value="{{ data.matric_father_name if data and 'matric_father_name' in data else '' }}">
+<lable>Metric Board Nme</lable>
 
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="matric_father_name">Father Name:</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" name="matric_father_name" required>
-        </div>
-    </div>
+<input type="text" name="matric_board_name" value="{{ data.matric_board_name if data and 'matric_board_name' in data else '' }}">
+<lable>Metric DOB</lable>
 
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="matric_board_name">Metric Board Name:</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" name="matric_board_name" required>
-        </div>
-    </div>
+<input type="text" name="matric_dob" value="{{ data.matric_dob if data and 'matric_dob' in data else '' }}">
+<lable>Metric Obtain Marks</lable>
 
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="matric_dob">Date of Birth:</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control datepicker" name="matric_dob"required>
-        </div>
-    </div>
+<input type="text" name="matric_obtain_marks" value="{{ data.matric_obtain_marks if data and 'matric_obtain_marks' in data else '' }}">
+<lable>Metric Total Marks</lable>
 
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="matric_obtain_marks">Obtain Marks:</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" name="matric_obtain_marks" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-        </div>
-    </div>
+<input type="text" name="matric_total_marks" value="{{ data.matric_total_marks if data and 'matric_total_marks' in data else '' }}">
+<lable>FSC Board Name</lable>
 
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="matric_total_marks">Total Marks:</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" name="matric_total_marks"  required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-        </div>
-    </div>
+<input type="text" name="fsc_board_name" value="{{ data.fsc_board_name if data and 'fsc_board_name' in data else '' }}">
+<lable>FSC Obtain Marks</lable>
 
-    <!-- Fsc Marksheet -->
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="fsc_board_name">FCS Board Name:</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" name="fsc_board_name" required>
-        </div>
-    </div>
+<input type="text" name="fsc_obtain_marks" value="{{ data.fsc_obtain_marks if data and 'fsc_obtain_marks' in data else '' }}">
+<lable>FSC Total Marks</lable>
 
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="fsc_total_marks">Total Marks:</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" name="fsc_total_marks" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
-        </div>
-    </div>
+<input type="text" name="fsc_total_marks" value="{{ data.fsc_total_marks if data and 'fsc_total_marks' in data else '' }}">
 
-    <div class="form-group">
-        <label class="control-label col-sm-2" for="fsc_obtain_marks">Obtain Marks:</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" name="fsc_obtain_marks" required oninput="this.value = this.value.replace(/[^0-9]/g, '');" >
-        </div>
-    </div>
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
