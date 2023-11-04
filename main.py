@@ -9,7 +9,7 @@ import concurrent.futures
 from models import Student
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key_here' 
+app.secret_key = 'dsfsf2312323312gdsgsjdf' 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:12345678@localhost/student_data'
 
 
@@ -21,15 +21,16 @@ def extract_text_from_image(uploaded_file):
         return extracted_text
     except Exception as e:
         return str(e)
-
+ 
 def clean_and_format_text(extracted_text):
-    cleaned_text = " ".join(extracted_text.split())
-    sentences = cleaned_text.split(". ")
-    formatted_text = "<ul>"
-    for sentence in sentences:
-        formatted_text += f"<li>{sentence}</li>"
-    formatted_text += "</ul>"
-    return formatted_text
+    # Split the text into lines
+    lines = extracted_text.splitlines()
+    return lines
+
+
+
+ 
+ 
 
 @app.route("/", methods=['GET', 'POST'])
 def main():
@@ -57,6 +58,8 @@ def get_output():
                 return render_template("index.html", predictions=["No images uploaded."])
         except Exception as e:
             return render_template("index.html", predictions=[str(e)])
+
+
 
 @app.route("/insert", methods=['GET', 'POST'])
 def insert_data():
