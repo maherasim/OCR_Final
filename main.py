@@ -29,6 +29,8 @@ def clean_and_format_text(extracted_text):
 
 
 
+
+
  
  
 

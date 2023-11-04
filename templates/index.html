@@ -39,14 +39,8 @@
   {% if predictions %}
   <h2>Predicted Data:</h2>
   <ul>
-    {% for prediction in predictions %}
-      <li>
-        <ul>
-          {% for line in prediction %}
-            <li>{{ line }}</li>
-          {% endfor %}
-        </ul>
-      </li>
+    {% for line in predictions %}
+      <li>{{ line }}</li>
     {% endfor %}
   </ul>
 {% endif %}
